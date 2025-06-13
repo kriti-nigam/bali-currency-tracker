@@ -7,10 +7,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.js"></script>
     
-    <!-- Firebase SDKs -->
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
-    
     <style>
         * {
             margin: 0;
@@ -750,30 +746,31 @@
     </div>
 
     <script type="module">
-        // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-app.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
+        // Import Firebase v9+ modular SDK
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-app.js";
+        import { 
+            getFirestore, 
+            collection, 
+            doc, 
+            setDoc, 
+            getDoc, 
+            onSnapshot, 
+            serverTimestamp 
+        } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js";
 
-  // Your web app's Firebase configuration
-  const firebaseConfig = {
-    apiKey: "AIzaSyBmmvI0MZSYNa3ThZydnScqNMvcxyXnVM4",
-    authDomain: "bali-currency-tracker.firebaseapp.com",
-    projectId: "bali-currency-tracker",
-    storageBucket: "bali-currency-tracker.firebasestorage.app",
-    messagingSenderId: "625532454163",
-    appId: "1:625532454163:web:b23923a2baa5607bcc86e6"
-  };
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyBmmvI0MZSYNa3ThZydnScqNMvcxyXnVM4",
+            authDomain: "bali-currency-tracker.firebaseapp.com",
+            projectId: "bali-currency-tracker",
+            storageBucket: "bali-currency-tracker.firebasestorage.app",
+            messagingSenderId: "625532454163",
+            appId: "1:625532454163:web:b23923a2baa5607bcc86e6"
+        };
 
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-        const db = firebase.firestore();
-        
-        // Enable offline persistence
-        db.enablePersistence({ synchronizeTabs: true })
-            .catch((err) => {
-                console.log('Offline persistence failed:', err);
-            });
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
 
         // ===== APP VARIABLES =====
         let EXCHANGE_RATE = 0.00578; // IDR to INR
@@ -783,6 +780,7 @@
         let pendingTopUpData = null;
         let isOnline = navigator.onLine;
         let userId = 'user_' + Math.random().toString(36).substr(2, 9); // Simple user ID
+        let unsubscribe = null;
         
         // Category colors for chart
         const categoryColors = {
@@ -799,7 +797,8 @@
         // Save user data to Firebase
         async function saveToFirebase(data) {
             try {
-                await db.collection('users').doc(userId).set(data, { merge: true });
+                const userDocRef = doc(db, 'users', userId);
+                await setDoc(userDocRef, data, { merge: true });
                 updateSyncStatus('✅', 'Synced');
                 return true;
             } catch (error) {
@@ -812,9 +811,11 @@
         // Load user data from Firebase
         async function loadFromFirebase() {
             try {
-                const doc = await db.collection('users').doc(userId).get();
-                if (doc.exists) {
-                    const data = doc.data();
+                const userDocRef = doc(db, 'users', userId);
+                const docSnap = await getDoc(userDocRef);
+                
+                if (docSnap.exists()) {
+                    const data = docSnap.data();
                     currentBalanceIDR = data.balance || 14000000;
                     EXCHANGE_RATE = data.exchangeRate || 0.00578;
                     spendingHistory = data.transactions || [];
@@ -830,8 +831,10 @@
 
         // Real-time listener for changes
         function setupRealtimeListener() {
-            db.collection('users').doc(userId).onSnapshot((doc) => {
-                if (doc.exists && doc.metadata.hasPendingWrites === false) {
+            const userDocRef = doc(db, 'users', userId);
+            
+            unsubscribe = onSnapshot(userDocRef, (doc) => {
+                if (doc.exists() && doc.metadata.hasPendingWrites === false) {
                     const data = doc.data();
                     const newBalance = data.balance || currentBalanceIDR;
                     const newRate = data.exchangeRate || EXCHANGE_RATE;
@@ -869,7 +872,7 @@
                 balance: currentBalanceIDR,
                 exchangeRate: EXCHANGE_RATE,
                 transactions: spendingHistory,
-                lastUpdated: firebase.firestore.FieldValue.serverTimestamp()
+                lastUpdated: serverTimestamp()
             };
             
             return await saveToFirebase(userData);
@@ -911,7 +914,7 @@
         // ===== UI FUNCTIONS =====
         
         // Toggle collapsible sections
-        function toggleSection(sectionName) {
+        window.toggleSection = function(sectionName) {
             const content = document.getElementById(sectionName + '-content');
             const chevron = document.getElementById(sectionName + '-chevron');
             
@@ -984,7 +987,7 @@
         // ===== SPENDING FUNCTIONS =====
         
         // Record spending
-        async function recordSpending() {
+        window.recordSpending = async function() {
             clearErrors();
             setLoading(true);
             
@@ -1059,7 +1062,7 @@
         // ===== CONVERTER FUNCTIONS =====
         
         // Convert currency
-        function convertCurrency() {
+        window.convertCurrency = function() {
             const amount = parseFloat(document.getElementById('convert-amount').value);
             
             if (!amount || amount <= 0) {
@@ -1075,20 +1078,20 @@
         // ===== TOP UP FUNCTIONS =====
         
         // Top up functions
-        function openTopUpModal() {
+        window.openTopUpModal = function() {
             document.getElementById('topUpModal').style.display = 'block';
             document.getElementById('exchange-rate').value = EXCHANGE_RATE;
             document.getElementById('topup-amount').value = currentBalanceIDR;
         }
         
-        function closeTopUpModal() {
+        window.closeTopUpModal = function() {
             document.getElementById('topUpModal').style.display = 'none';
             document.getElementById('topup-amount').value = '';
             document.getElementById('topup-success').style.display = 'none';
             document.getElementById('topup-error').style.display = 'none';
         }
         
-        function showTopUpConfirm() {
+        window.showTopUpConfirm = function() {
             const amount = parseFloat(document.getElementById('topup-amount').value);
             const newRate = parseFloat(document.getElementById('exchange-rate').value);
             
@@ -1126,7 +1129,7 @@
             document.getElementById('confirmModal').style.display = 'block';
         }
         
-        async function confirmTopUp() {
+        window.confirmTopUp = async function() {
             if (pendingTopUpData) {
                 try {
                     currentBalanceIDR = pendingTopUpData.amount;
@@ -1154,7 +1157,7 @@
             }
         }
         
-        function closeConfirmModal() {
+        window.closeConfirmModal = function() {
             document.getElementById('confirmModal').style.display = 'none';
             pendingTopUpData = null;
         }
@@ -1162,17 +1165,17 @@
         // ===== HISTORY MODAL FUNCTIONS =====
         
         // History modal functions
-        function openHistoryModal() {
+        window.openHistoryModal = function() {
             document.getElementById('historyModal').style.display = 'block';
             updateDetailedHistory();
             updateAnalysis();
         }
         
-        function closeHistoryModal() {
+        window.closeHistoryModal = function() {
             document.getElementById('historyModal').style.display = 'none';
         }
         
-        function switchTab(tabName) {
+        window.switchTab = function(tabName) {
             document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
             event.target.classList.add('active');
             
@@ -1236,7 +1239,7 @@
             lucide.createIcons();
         }
         
-        function editTransaction(index) {
+        window.editTransaction = function(index) {
             // Hide all other edit forms
             document.querySelectorAll('.edit-form').forEach(form => {
                 form.classList.remove('show');
@@ -1247,12 +1250,12 @@
             editingIndex = index;
         }
         
-        function cancelEdit(index) {
+        window.cancelEdit = function(index) {
             document.getElementById(`edit-form-${index}`).classList.remove('show');
             editingIndex = -1;
         }
         
-        async function saveTransaction(index) {
+        window.saveTransaction = async function(index) {
             const newAmount = parseFloat(document.getElementById(`edit-amount-${index}`).value);
             const newCategory = document.getElementById(`edit-category-${index}`).value;
             const newDescription = document.getElementById(`edit-description-${index}`).value;
@@ -1303,7 +1306,7 @@
             editingIndex = -1;
         }
         
-        async function deleteTransaction(index) {
+        window.deleteTransaction = async function(index) {
             if (confirm('Are you sure you want to delete this transaction?')) {
                 try {
                     // Return the money to balance
@@ -1446,6 +1449,13 @@
         
         document.getElementById('convert-amount').addEventListener('keypress', function(e) {
             if (e.key === 'Enter') convertCurrency();
+        });
+
+        // Cleanup on page unload
+        window.addEventListener('beforeunload', () => {
+            if (unsubscribe) {
+                unsubscribe();
+            }
         });
     </script>
 </body>
