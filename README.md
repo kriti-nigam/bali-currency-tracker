@@ -10,7 +10,7 @@ A beautiful, real-time money tracking app for your Bali trip!
 - 🎨 Beautiful gradient UI
 
 ## Live Demo
-[View App](https://yourusername.github.io/bali-currency-tracker/)
+[View App](https://kriti-nigam.github.io/bali-currency-tracker/)
 
 ## Tech Stack
 - Vanilla JavaScript
