@@ -248,3 +248,1274 @@
         -webkit-text-fill-color: transparent;
         background-clip: text;
     }
+    
+    .error-message {
+        background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+        color: white;
+        padding: 12px 15px;
+        border-radius: 12px;
+        margin: 10px 0;
+        font-size: 14px;
+        display: none;
+        animation: slideIn 0.3s ease;
+    }
+    
+    .error-input {
+        border-color: #ff6b6b !important;
+        box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.2) !important;
+    }
+    
+    @keyframes slideIn {
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .success-message {
+        background: linear-gradient(135deg, #00b894, #00cec9);
+        color: white;
+        padding: 12px 15px;
+        border-radius: 12px;
+        margin: 10px 0;
+        font-size: 14px;
+        display: none;
+        animation: slideIn 0.3s ease;
+    }
+    
+    .chevron {
+        transition: transform 0.3s ease;
+    }
+    
+    .chevron.rotated {
+        transform: rotate(180deg);
+    }
+    
+    /* Modal Styles */
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+    }
+    
+    .modal-content {
+        background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        margin: 5% auto;
+        padding: 0;
+        border-radius: 20px;
+        width: 90%;
+        max-width: 500px;
+        max-height: 90vh;
+        overflow-y: auto;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .modal-header {
+        background: linear-gradient(135deg, #b19cd9, #f7d794);
+        color: #1a1a2e;
+        padding: 20px;
+        border-radius: 20px 20px 0 0;
+        position: relative;
+    }
+    
+    .modal-header h2 {
+        margin: 0;
+        font-size: 20px;
+        font-weight: 700;
+    }
+    
+    .close {
+        position: absolute;
+        right: 20px;
+        top: 20px;
+        font-size: 24px;
+        font-weight: bold;
+        cursor: pointer;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .modal-body {
+        padding: 20px;
+        color: white;
+    }
+    
+    .detailed-history-item {
+        background: rgba(255, 255, 255, 0.05);
+        padding: 15px;
+        margin-bottom: 10px;
+        border-radius: 12px;
+        border-left: 4px solid #b19cd9;
+        position: relative;
+    }
+    
+    .transaction-actions {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        display: flex;
+        gap: 10px;
+    }
+    
+    .action-btn {
+        background: rgba(255, 255, 255, 0.1);
+        border: none;
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        color: white;
+    }
+    
+    .action-btn:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: scale(1.1);
+    }
+    
+    .edit-btn:hover {
+        background: rgba(255, 193, 7, 0.3);
+        color: #ffc107;
+    }
+    
+    .delete-btn:hover {
+        background: rgba(220, 53, 69, 0.3);
+        color: #dc3545;
+    }
+    
+    .category-stats {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+        margin-top: 20px;
+    }
+    
+    .category-item {
+        background: rgba(255, 255, 255, 0.05);
+        padding: 15px;
+        border-radius: 12px;
+        text-align: center;
+    }
+    
+    .category-amount {
+        font-size: 18px;
+        font-weight: bold;
+        background: linear-gradient(135deg, #b19cd9, #f7d794);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+    
+    .chart-container {
+        margin: 20px 0;
+        display: flex;
+        justify-content: center;
+    }
+    
+    .pie-chart {
+        width: 200px;
+        height: 200px;
+    }
+    
+    .chart-legend {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+        margin-top: 15px;
+    }
+    
+    .legend-item {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        font-size: 12px;
+    }
+    
+    .legend-color {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+    }
+    
+    .tabs {
+        display: flex;
+        margin-bottom: 20px;
+    }
+    
+    .tab {
+        flex: 1;
+        padding: 10px;
+        background: rgba(255, 255, 255, 0.1);
+        border: none;
+        color: white;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-family: 'Open Sans', sans-serif;
+    }
+    
+    .tab:first-child {
+        border-radius: 12px 0 0 12px;
+    }
+    
+    .tab:last-child {
+        border-radius: 0 12px 12px 0;
+    }
+    
+    .tab.active {
+        background: linear-gradient(135deg, #b19cd9, #f7d794);
+        color: #1a1a2e;
+    }
+    
+    .tab-content {
+        display: none;
+    }
+    
+    .tab-content.active {
+        display: block;
+    }
+    
+    .edit-form {
+        background: rgba(255, 255, 255, 0.05);
+        padding: 15px;
+        border-radius: 12px;
+        margin: 10px 0;
+        display: none;
+    }
+    
+    .edit-form.show {
+        display: block;
+    }
+    
+    .form-row {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 10px;
+    }
+    
+    .form-row input, .form-row select {
+        flex: 1;
+        padding: 8px 12px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+        font-size: 14px;
+        font-family: 'Open Sans', sans-serif;
+    }
+    
+    .form-actions {
+        display: flex;
+        gap: 10px;
+    }
+    
+    .form-btn {
+        flex: 1;
+        padding: 8px 16px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        font-family: 'Open Sans', sans-serif;
+    }
+    
+    .save-btn {
+        background: linear-gradient(135deg, #00b894, #00cec9);
+        color: white;
+    }
+    
+    .cancel-btn {
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+    }
+    
+    .confirm-modal-content {
+        background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        margin: 20% auto;
+        padding: 30px;
+        border-radius: 20px;
+        width: 90%;
+        max-width: 400px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        text-align: center;
+    }
+    
+    .confirm-text {
+        margin: 20px 0;
+        color: white;
+        font-size: 16px;
+    }
+    
+    .confirm-actions {
+        display: flex;
+        gap: 15px;
+        justify-content: center;
+    }
+    
+    .confirm-btn {
+        padding: 12px 24px;
+        border: none;
+        border-radius: 12px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        font-family: 'Open Sans', sans-serif;
+    }
+    
+    .confirm-yes {
+        background: linear-gradient(135deg, #b19cd9, #f7d794);
+        color: #1a1a2e;
+    }
+    
+    .confirm-no {
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+    }
+    
+    .loading {
+        opacity: 0.7;
+        pointer-events: none;
+    }
+    
+    .user-info {
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        font-size: 12px;
+        color: rgba(26, 26, 46, 0.7);
+        cursor: pointer;
+        title: "User ID (click to copy)";
+    }
+</style>
+
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="sync-status" id="syncStatus" title="Sync Status">⏳</div>
+            <div class="user-info" id="userInfo" title="User ID (click to copy)">👤</div>
+            <h1>🏝️ Bali Money Tracker</h1>
+            <p>This is where your money goes</p>
+        </div>
+
+    <div class="balance-display">
+        <div class="top-action">
+            <div class="action-icon" onclick="openTopUpModal()" title="Top Up Balance">
+                <span style="font-size: 18px;">💰</span>
+            </div>
+        </div>
+        
+        <div class="history-action">
+            <div class="action-icon" onclick="openHistoryModal()" title="View History & Analytics">
+                <span style="font-size: 18px;">📊</span>
+            </div>
+        </div>
+        
+        <div class="balance-item">
+            <div class="balance-label">IDR Balance</div>
+            <div class="balance-amount" id="idr-balance">Loading...</div>
+        </div>
+        <div class="balance-item">
+            <div class="balance-label">INR Equivalent</div>
+            <div class="balance-amount" id="inr-balance">Loading...</div>
+        </div>
+    </div>
+    
+    <!-- Amount Spent Section -->
+    <div class="collapsible-section">
+        <div class="section-header" onclick="toggleSection('spending')">
+            <span class="section-title">💸 Record Spending</span>
+            <span class="chevron" id="spending-chevron" style="font-size: 20px;">🔽</span>
+        </div>
+        <div class="section-content" id="spending-content">
+            <div class="spending-section">
+                <div class="input-group">
+                    <label class="input-label">Amount Spent (IDR)</label>
+                    <input type="number" class="input-field" id="spend-amount" placeholder="Enter amount in IDR">
+                    <div class="error-message" id="amount-error"></div>
+                </div>
+                
+                <div class="input-group">
+                    <label class="input-label">🏷️ Category</label>
+                    <select class="select-field" id="spend-category">
+                        <option value="Food">🍽️ Food & Drinks</option>
+                        <option value="Transport">🚗 Transport</option>
+                        <option value="Accommodation">🏨 Accommodation</option>
+                        <option value="Shopping">🛍️ Shopping</option>
+                        <option value="Activities">🎯 Activities & Tours</option>
+                        <option value="Other">📦 Other</option>
+                    </select>
+                </div>
+                
+                <div class="input-group">
+                    <label class="input-label">📝 Description (optional)</label>
+                    <input type="text" class="input-field" id="spend-description" placeholder="e.g., Dinner at beach restaurant">
+                </div>
+                
+                <button class="button" onclick="recordSpending()" id="record-btn">Record Spending</button>
+                <div class="success-message" id="success-message"></div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Quick Converter Section -->
+    <div class="collapsible-section">
+        <div class="section-header" onclick="toggleSection('converter')">
+            <span class="section-title">💱 Quick Converter</span>
+            <span class="chevron" id="converter-chevron" style="font-size: 20px;">🔽</span>
+        </div>
+        <div class="section-content" id="converter-content">
+            <div class="converter-section">
+                <div class="input-group">
+                    <label class="input-label">IDR Amount</label>
+                    <input type="number" class="input-field" id="convert-amount" placeholder="Enter IDR amount">
+                </div>
+                
+                <button class="button" onclick="convertCurrency()">Convert to INR</button>
+                
+                <div class="conversion-result" id="conversion-result" style="display: none;">
+                    <div class="conversion-amount" id="converted-amount"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Top Up Modal -->
+<div id="topUpModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>💰 Add Money</h2>
+            <span class="close" onclick="closeTopUpModal()">&times;</span>
+        </div>
+        <div class="modal-body">
+            <div class="input-group">
+                <label class="input-label">New IDR Balance</label>
+                <input type="number" class="input-field" id="topup-amount" placeholder="Enter new total IDR balance">
+            </div>
+            
+            <div class="input-group">
+                <label class="input-label">Exchange Rate (IDR to INR)</label>
+                <input type="number" class="input-field" id="exchange-rate" step="0.00001" placeholder="0.00578">
+            </div>
+            
+            <button class="button" onclick="showTopUpConfirm()">Update Balance</button>
+            <div class="success-message" id="topup-success"></div>
+            <div class="error-message" id="topup-error"></div>
+        </div>
+    </div>
+</div>
+
+<!-- Confirm Modal -->
+<div id="confirmModal" class="modal">
+    <div class="confirm-modal-content">
+        <h3 style="color: white; margin-bottom: 10px;">Confirm Balance Update</h3>
+        <div class="confirm-text" id="confirm-text"></div>
+        <div class="confirm-actions">
+            <button class="confirm-btn confirm-yes" onclick="confirmTopUp()">Confirm</button>
+            <button class="confirm-btn confirm-no" onclick="closeConfirmModal()">Cancel</button>
+        </div>
+    </div>
+</div>
+
+<!-- History Modal -->
+<div id="historyModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>📊 Money Tracker</h2>
+            <span class="close" onclick="closeHistoryModal()">&times;</span>
+        </div>
+        <div class="modal-body">
+            <div class="tabs">
+                <button class="tab active" onclick="switchTab('transactions')">Transactions</button>
+                <button class="tab" onclick="switchTab('analytics')">Analytics</button>
+            </div>
+            
+            <div id="transactions-tab" class="tab-content active">
+                <div id="detailed-history"></div>
+            </div>
+            
+            <div id="analytics-tab" class="tab-content">
+                <div class="chart-container">
+                    <canvas id="pieChart" class="pie-chart"></canvas>
+                </div>
+                <div class="chart-legend" id="chartLegend"></div>
+                <div class="category-stats" id="categoryStats"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="module">
+    // Import Firebase v9+ modular SDK
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-app.js";
+    import { 
+        getFirestore, 
+        collection, 
+        doc, 
+        setDoc, 
+        getDoc, 
+        onSnapshot, 
+        serverTimestamp 
+    } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js";
+
+    // Firebase configuration
+    const firebaseConfig = {
+        apiKey: "AIzaSyBmmvI0MZSYNa3ThZydnScqNMvcxyXnVM4",
+        authDomain: "bali-currency-tracker.firebaseapp.com",
+        projectId: "bali-currency-tracker",
+        storageBucket: "bali-currency-tracker.firebasestorage.app",
+        messagingSenderId: "625532454163",
+        appId: "1:625532454163:web:b23923a2baa5607bcc86e6"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    // ===== APP VARIABLES =====
+    let EXCHANGE_RATE = 0.00578; // IDR to INR
+    let currentBalanceIDR = 14000000;
+    let spendingHistory = [];
+    let editingIndex = -1;
+    let pendingTopUpData = null;
+    let isOnline = navigator.onLine;
+    let userId = null; // Will be set from localStorage or generated
+    let unsubscribe = null;
+    
+    // Category colors for chart
+    const categoryColors = {
+        'Food': '#b19cd9',
+        'Transport': '#f7d794',
+        'Accommodation': '#e4c1f9',
+        'Shopping': '#a8e6cf',
+        'Activities': '#ffeaa7',
+        'Other': '#dda0dd'
+    };
+
+    // ===== USER ID MANAGEMENT =====
+    
+    // Get or create persistent user ID
+    function getUserId() {
+        let storedUserId = localStorage.getItem('baliTrackerUserId');
+        
+        if (!storedUserId) {
+            // Generate new user ID if none exists
+            storedUserId = 'user_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+            localStorage.setItem('baliTrackerUserId', storedUserId);
+            console.log('Created new user ID:', storedUserId);
+        } else {
+            console.log('Using existing user ID:', storedUserId);
+        }
+        
+        return storedUserId;
+    }
+    
+    // Display user ID in header
+    function displayUserId() {
+        const userInfo = document.getElementById('userInfo');
+        const shortId = userId.substr(-6); // Show last 6 characters
+        userInfo.textContent = `👤 ${shortId}`;
+        userInfo.onclick = function() {
+            navigator.clipboard.writeText(userId).then(() => {
+                const originalText = userInfo.textContent;
+                userInfo.textContent = '📋 Copied!';
+                setTimeout(() => {
+                    userInfo.textContent = originalText;
+                }, 2000);
+            });
+        };
+    }
+
+    // ===== FIREBASE FUNCTIONS =====
+    
+    // Save user data to Firebase
+    async function saveToFirebase(data) {
+        try {
+            const userDocRef = doc(db, 'users', userId);
+            await setDoc(userDocRef, data, { merge: true });
+            updateSyncStatus('✅', 'Synced');
+            console.log('Data saved to Firebase successfully');
+            return true;
+        } catch (error) {
+            console.error('Error saving to Firebase:', error);
+            updateSyncStatus('⚠️', 'Sync failed');
+            return false;
+        }
+    }
+
+    // Load user data from Firebase
+    async function loadFromFirebase() {
+        try {
+            const userDocRef = doc(db, 'users', userId);
+            const docSnap = await getDoc(userDocRef);
+            
+            if (docSnap.exists()) {
+                const data = docSnap.data();
+                currentBalanceIDR = data.balance || 14000000;
+                EXCHANGE_RATE = data.exchangeRate || 0.00578;
+                spendingHistory = data.transactions || [];
+                updateSyncStatus('✅', 'Loaded from cloud');
+                console.log('Loaded data from Firebase:', data);
+                return true;
+            } else {
+                console.log('No existing data found for user:', userId);
+                // First time user - save initial data
+                await syncData();
+            }
+        } catch (error) {
+            console.error('Error loading from Firebase:', error);
+            updateSyncStatus('🔄', 'Loading from cache');
+        }
+        return false;
+    }
+
+    // Real-time listener for changes
+    function setupRealtimeListener() {
+        const userDocRef = doc(db, 'users', userId);
+        
+        unsubscribe = onSnapshot(userDocRef, (doc) => {
+            if (doc.exists() && doc.metadata.hasPendingWrites === false) {
+                const data = doc.data();
+                const newBalance = data.balance || currentBalanceIDR;
+                const newRate = data.exchangeRate || EXCHANGE_RATE;
+                const newHistory = data.transactions || spendingHistory;
+                
+                // Only update if data actually changed
+                if (newBalance !== currentBalanceIDR || 
+                    newRate !== EXCHANGE_RATE || 
+                    JSON.stringify(newHistory) !== JSON.stringify(spendingHistory)) {
+                    
+                    currentBalanceIDR = newBalance;
+                    EXCHANGE_RATE = newRate;
+                    spendingHistory = newHistory;
+                    
+                    updateDisplay();
+                    updateSyncStatus('🔄', 'Updated from cloud');
+                    console.log('Received real-time update from Firebase');
+                }
+            }
+        }, (error) => {
+            console.error('Realtime listener error:', error);
+            updateSyncStatus('⚠️', 'Connection lost');
+        });
+    }
+
+    // Update sync status indicator
+    function updateSyncStatus(emoji, title) {
+        const syncStatus = document.getElementById('syncStatus');
+        syncStatus.textContent = emoji;
+        syncStatus.title = title;
+    }
+
+    // Save current state to Firebase
+    async function syncData() {
+        const userData = {
+            balance: currentBalanceIDR,
+            exchangeRate: EXCHANGE_RATE,
+            transactions: spendingHistory,
+            lastUpdated: serverTimestamp()
+        };
+        
+        return await saveToFirebase(userData);
+    }
+
+    // ===== INITIALIZATION =====
+    document.addEventListener('DOMContentLoaded', async function() {
+        updateSyncStatus('⏳', 'Loading...');
+        
+        // Get or create user ID
+        userId = getUserId();
+        displayUserId();
+        
+        // Try to load from Firebase first
+        const loaded = await loadFromFirebase();
+        if (!loaded) {
+            // If loading failed, use default values
+            updateSyncStatus('📱', 'Offline mode');
+        }
+        
+        // Update display with loaded or default data
+        updateDisplay();
+        
+        // Set up real-time listening
+        setupRealtimeListener();
+        
+        // Initialize Lucide icons
+        lucide.createIcons();
+        
+        // Monitor online status
+        window.addEventListener('online', () => {
+            isOnline = true;
+            updateSyncStatus('🔄', 'Reconnecting...');
+            syncData();
+        });
+        
+        window.addEventListener('offline', () => {
+            isOnline = false;
+            updateSyncStatus('📱', 'Offline mode');
+        });
+    });
+
+    // ===== UI FUNCTIONS =====
+    
+    // Toggle collapsible sections
+    window.toggleSection = function(sectionName) {
+        const content = document.getElementById(sectionName + '-content');
+        const chevron = document.getElementById(sectionName + '-chevron');
+        
+        if (content.classList.contains('collapsed')) {
+            content.classList.remove('collapsed');
+            chevron.textContent = '🔽';
+        } else {
+            content.classList.add('collapsed');
+            chevron.textContent = '▶️';
+        }
+    }
+    
+    // Update display
+    function updateDisplay() {
+        document.getElementById('idr-balance').textContent = formatNumber(currentBalanceIDR);
+        document.getElementById('inr-balance').textContent = formatNumber(Math.round(currentBalanceIDR * EXCHANGE_RATE));
+    }
+    
+    // Format numbers with commas
+    function formatNumber(num) {
+        return num.toLocaleString('en-IN');
+    }
+    
+    // Clear any previous errors
+    function clearErrors() {
+        document.getElementById('amount-error').style.display = 'none';
+        document.getElementById('spend-amount').classList.remove('error-input');
+        document.getElementById('success-message').style.display = 'none';
+    }
+    
+    // Show error message
+    function showError(message) {
+        const errorDiv = document.getElementById('amount-error');
+        const inputField = document.getElementById('spend-amount');
+        
+        errorDiv.textContent = message;
+        errorDiv.style.display = 'block';
+        inputField.classList.add('error-input');
+        
+        setTimeout(() => {
+            clearErrors();
+        }, 5000);
+    }
+    
+    // Show success message
+    function showSuccess(message) {
+        const successDiv = document.getElementById('success-message');
+        successDiv.textContent = message;
+        successDiv.style.display = 'block';
+        
+        setTimeout(() => {
+            successDiv.style.display = 'none';
+        }, 3000);
+    }
+    
+    // Set loading state
+    function setLoading(isLoading) {
+        const recordBtn = document.getElementById('record-btn');
+        if (isLoading) {
+            recordBtn.disabled = true;
+            recordBtn.textContent = 'Saving...';
+            document.body.classList.add('loading');
+        } else {
+            recordBtn.disabled = false;
+            recordBtn.textContent = 'Record Spending';
+            document.body.classList.remove('loading');
+        }
+    }
+    
+    // ===== SPENDING FUNCTIONS =====
+    
+    // Record spending
+    window.recordSpending = async function() {
+        clearErrors();
+        setLoading(true);
+        
+        const amount = parseFloat(document.getElementById('spend-amount').value);
+        const category = document.getElementById('spend-category').value;
+        const description = document.getElementById('spend-description').value || category;
+        
+        if (!amount) {
+            showError('Please enter an amount to spend');
+            setLoading(false);
+            return;
+        }
+        
+        if (amount <= 0) {
+            showError('Amount must be greater than 0');
+            setLoading(false);
+            return;
+        }
+        
+        if (amount > currentBalanceIDR) {
+            showError(`Insufficient balance! You only have ${formatNumber(currentBalanceIDR)} IDR left`);
+            setLoading(false);
+            return;
+        }
+        
+        try {
+            // Update balance
+            currentBalanceIDR -= amount;
+            
+            // Add to history
+            const historyItem = {
+                id: Date.now().toString(), // Simple ID
+                amount: amount,
+                category: category,
+                description: description,
+                date: new Date().toLocaleString('en-IN', { 
+                    day: '2-digit', 
+                    month: 'short', 
+                    hour: '2-digit', 
+                    minute: '2-digit' 
+                }),
+                timestamp: new Date().toISOString()
+            };
+            spendingHistory.unshift(historyItem);
+            
+            // Update display
+            updateDisplay();
+            
+            // Sync to Firebase
+            const synced = await syncData();
+            
+            // Clear inputs
+            document.getElementById('spend-amount').value = '';
+            document.getElementById('spend-description').value = '';
+            
+            // Show success message
+            const syncMessage = synced ? '✅' : '💾';
+            showSuccess(`${syncMessage} Recorded ${formatNumber(amount)} IDR for ${category}`);
+            
+        } catch (error) {
+            console.error('Error recording spending:', error);
+            showError('Failed to save transaction. Please try again.');
+            // Rollback changes
+            currentBalanceIDR += amount;
+            spendingHistory.shift();
+            updateDisplay();
+        } finally {
+            setLoading(false);
+        }
+    }
+    
+    // ===== CONVERTER FUNCTIONS =====
+    
+    // Convert currency
+    window.convertCurrency = function() {
+        const amount = parseFloat(document.getElementById('convert-amount').value);
+        
+        if (!amount || amount <= 0) {
+            alert('Please enter a valid amount!');
+            return;
+        }
+        
+        const inrAmount = Math.round(amount * EXCHANGE_RATE);
+        document.getElementById('converted-amount').textContent = `₹${formatNumber(inrAmount)}`;
+        document.getElementById('conversion-result').style.display = 'block';
+    }
+    
+    // ===== TOP UP FUNCTIONS =====
+    
+    // Top up functions
+    window.openTopUpModal = function() {
+        document.getElementById('topUpModal').style.display = 'block';
+        document.getElementById('exchange-rate').value = EXCHANGE_RATE;
+        document.getElementById('topup-amount').value = currentBalanceIDR;
+    }
+    
+    window.closeTopUpModal = function() {
+        document.getElementById('topUpModal').style.display = 'none';
+        document.getElementById('topup-amount').value = '';
+        document.getElementById('topup-success').style.display = 'none';
+        document.getElementById('topup-error').style.display = 'none';
+    }
+    
+    window.showTopUpConfirm = function() {
+        const amount = parseFloat(document.getElementById('topup-amount').value);
+        const newRate = parseFloat(document.getElementById('exchange-rate').value);
+        
+        if (!amount || amount < 0) {
+            document.getElementById('topup-error').textContent = 'Please enter a valid balance amount';
+            document.getElementById('topup-error').style.display = 'block';
+            return;
+        }
+        
+        if (!newRate || newRate <= 0) {
+            document.getElementById('topup-error').textContent = 'Please enter a valid exchange rate';
+            document.getElementById('topup-error').style.display = 'block';
+            return;
+        }
+        
+        // Store pending data
+        pendingTopUpData = {
+            amount: amount,
+            rate: newRate
+        };
+        
+        // Show confirmation
+        const difference = amount - currentBalanceIDR;
+        const changeText = difference >= 0 ? 
+            `Add ${formatNumber(difference)} IDR` : 
+            `Remove ${formatNumber(Math.abs(difference))} IDR`;
+        
+        document.getElementById('confirm-text').innerHTML = `
+            <strong>New Balance:</strong> ${formatNumber(amount)} IDR<br>
+            <strong>Change:</strong> ${changeText}<br>
+            <strong>New Rate:</strong> ${newRate} IDR to INR<br>
+            <strong>INR Equivalent:</strong> ₹${formatNumber(Math.round(amount * newRate))}
+        `;
+        
+        document.getElementById('confirmModal').style.display = 'block';
+    }
+    
+    window.confirmTopUp = async function() {
+        if (pendingTopUpData) {
+            try {
+                currentBalanceIDR = pendingTopUpData.amount;
+                EXCHANGE_RATE = pendingTopUpData.rate;
+                updateDisplay();
+                
+                // Sync to Firebase
+                const synced = await syncData();
+                
+                const syncMessage = synced ? '✅' : '💾';
+                document.getElementById('topup-success').textContent = `${syncMessage} Balance updated to ${formatNumber(currentBalanceIDR)} IDR`;
+                document.getElementById('topup-success').style.display = 'block';
+                document.getElementById('topup-error').style.display = 'none';
+                
+            } catch (error) {
+                console.error('Error updating balance:', error);
+                document.getElementById('topup-error').textContent = 'Failed to update balance. Please try again.';
+                document.getElementById('topup-error').style.display = 'block';
+            }
+            
+            closeConfirmModal();
+            setTimeout(() => {
+                closeTopUpModal();
+            }, 2000);
+        }
+    }
+    
+    window.closeConfirmModal = function() {
+        document.getElementById('confirmModal').style.display = 'none';
+        pendingTopUpData = null;
+    }
+    
+    // ===== HISTORY MODAL FUNCTIONS =====
+    
+    // History modal functions
+    window.openHistoryModal = function() {
+        document.getElementById('historyModal').style.display = 'block';
+        updateDetailedHistory();
+        updateAnalysis();
+    }
+    
+    window.closeHistoryModal = function() {
+        document.getElementById('historyModal').style.display = 'none';
+    }
+    
+    window.switchTab = function(tabName) {
+        document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+        event.target.classList.add('active');
+        
+        document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+        document.getElementById(tabName + '-tab').classList.add('active');
+        
+        if (tabName === 'analytics') {
+            setTimeout(() => drawPieChart(), 100);
+        }
+    }
+    
+    function updateDetailedHistory() {
+        const detailedHistory = document.getElementById('detailed-history');
+        
+        if (spendingHistory.length === 0) {
+            detailedHistory.innerHTML = '<p style="text-align: center; color: #888;">No spending recorded yet</p>';
+            return;
+        }
+        
+        detailedHistory.innerHTML = spendingHistory.map((item, index) => 
+            `<div class="detailed-history-item" id="transaction-${index}">
+                <div class="transaction-actions">
+                    <button class="action-btn edit-btn" onclick="editTransaction(${index})">
+                        ✏️
+                    </button>
+                    <button class="action-btn delete-btn" onclick="deleteTransaction(${index})">
+                        🗑️
+                    </button>
+                </div>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; margin-right: 80px;">
+                    <strong>${item.category}</strong>
+                    <span style="background: linear-gradient(135deg, #b19cd9, #f7d794); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: bold;">
+                        ₹${formatNumber(Math.round(item.amount * EXCHANGE_RATE))}
+                    </span>
+                </div>
+                <div style="color: #b0b0c0; margin-bottom: 5px;">${item.description}</div>
+                <div style="color: #888; font-size: 12px;">${formatNumber(item.amount)} IDR • ${item.date}</div>
+                
+                <div class="edit-form" id="edit-form-${index}">
+                    <div class="form-row">
+                        <input type="number" id="edit-amount-${index}" value="${item.amount}" placeholder="Amount">
+                        <select id="edit-category-${index}">
+                            <option value="Food" ${item.category === 'Food' ? 'selected' : ''}>🍽️ Food & Drinks</option>
+                            <option value="Transport" ${item.category === 'Transport' ? 'selected' : ''}>🚗 Transport</option>
+                            <option value="Accommodation" ${item.category === 'Accommodation' ? 'selected' : ''}>🏨 Accommodation</option>
+                            <option value="Shopping" ${item.category === 'Shopping' ? 'selected' : ''}>🛍️ Shopping</option>
+                            <option value="Activities" ${item.category === 'Activities' ? 'selected' : ''}>🎯 Activities & Tours</option>
+                            <option value="Other" ${item.category === 'Other' ? 'selected' : ''}>📦 Other</option>
+                        </select>
+                    </div>
+                    <input type="text" id="edit-description-${index}" value="${item.description}" placeholder="Description" style="width: 100%; margin-bottom: 10px; padding: 8px 12px; border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 8px; background: rgba(255, 255, 255, 0.1); color: white; font-size: 14px;">
+                    <div class="form-actions">
+                        <button class="form-btn save-btn" onclick="saveTransaction(${index})">Save</button>
+                        <button class="form-btn cancel-btn" onclick="cancelEdit(${index})">Cancel</button>
+                    </div>
+                </div>
+            </div>`
+        ).join('');
+        
+        // Re-initialize Lucide icons for the new content
+        lucide.createIcons();
+    }
+    
+    window.editTransaction = function(index) {
+        // Hide all other edit forms
+        document.querySelectorAll('.edit-form').forEach(form => {
+            form.classList.remove('show');
+        });
+        
+        // Show edit form for this transaction
+        document.getElementById(`edit-form-${index}`).classList.add('show');
+        editingIndex = index;
+    }
+    
+    window.cancelEdit = function(index) {
+        document.getElementById(`edit-form-${index}`).classList.remove('show');
+        editingIndex = -1;
+    }
+    
+    window.saveTransaction = async function(index) {
+        const newAmount = parseFloat(document.getElementById(`edit-amount-${index}`).value);
+        const newCategory = document.getElementById(`edit-category-${index}`).value;
+        const newDescription = document.getElementById(`edit-description-${index}`).value;
+        
+        if (!newAmount || newAmount <= 0) {
+            alert('Please enter a valid amount');
+            return;
+        }
+        
+        const oldAmount = spendingHistory[index].amount;
+        const difference = newAmount - oldAmount;
+        
+        // Check if new amount exceeds available balance
+        if (difference > currentBalanceIDR) {
+            alert(`Insufficient balance! You only have ${formatNumber(currentBalanceIDR)} IDR available.`);
+            return;
+        }
+        
+        try {
+            // Update balance based on the difference
+            currentBalanceIDR -= difference;
+            
+            // Update transaction
+            spendingHistory[index] = {
+                ...spendingHistory[index],
+                amount: newAmount,
+                category: newCategory,
+                description: newDescription
+            };
+            
+            // Update displays
+            updateDisplay();
+            updateDetailedHistory();
+            updateAnalysis();
+            
+            // Sync to Firebase
+            await syncData();
+            
+        } catch (error) {
+            console.error('Error updating transaction:', error);
+            // Rollback changes
+            currentBalanceIDR += difference;
+            spendingHistory[index].amount = oldAmount;
+            updateDisplay();
+            alert('Failed to update transaction. Please try again.');
+        }
+        
+        editingIndex = -1;
+    }
+    
+    window.deleteTransaction = async function(index) {
+        if (confirm('Are you sure you want to delete this transaction?')) {
+            try {
+                // Return the money to balance
+                currentBalanceIDR += spendingHistory[index].amount;
+                
+                // Remove from history
+                spendingHistory.splice(index, 1);
+                
+                // Update displays
+                updateDisplay();
+                updateDetailedHistory();
+                updateAnalysis();
+                
+                // Sync to Firebase
+                await syncData();
+                
+            } catch (error) {
+                console.error('Error deleting transaction:', error);
+                alert('Failed to delete transaction. Please try again.');
+            }
+        }
+    }
+    
+    // ===== ANALYTICS FUNCTIONS =====
+    
+    function updateAnalysis() {
+        const categoryStats = {};
+        const totalSpent = spendingHistory.reduce((sum, item) => sum + item.amount, 0);
+        
+        spendingHistory.forEach(item => {
+            if (!categoryStats[item.category]) {
+                categoryStats[item.category] = 0;
+            }
+            categoryStats[item.category] += item.amount;
+        });
+        
+        // Update category stats
+        const statsContainer = document.getElementById('categoryStats');
+        if (totalSpent === 0) {
+            statsContainer.innerHTML = '<div style="grid-column: 1/-1; text-align: center; color: #888;">No spending data available</div>';
+            return;
+        }
+        
+        statsContainer.innerHTML = Object.entries(categoryStats).map(([category, amount]) => 
+            `<div class="category-item">
+                <div style="color: #b0b0c0; margin-bottom: 5px;">${category}</div>
+                <div class="category-amount">₹${formatNumber(Math.round(amount * EXCHANGE_RATE))}</div>
+                <div style="color: #888; font-size: 12px;">${Math.round((amount / totalSpent) * 100)}%</div>
+            </div>`
+        ).join('');
+    }
+    
+    function drawPieChart() {
+        const canvas = document.getElementById('pieChart');
+        const ctx = canvas.getContext('2d');
+        
+        // Set canvas size
+        canvas.width = 200;
+        canvas.height = 200;
+        
+        const categoryStats = {};
+        const totalSpent = spendingHistory.reduce((sum, item) => sum + item.amount, 0);
+        
+        if (totalSpent === 0) {
+            ctx.fillStyle = '#888';
+            ctx.font = '14px Open Sans';
+            ctx.textAlign = 'center';
+            ctx.fillText('No data yet', 100, 100);
+            return;
+        }
+        
+        spendingHistory.forEach(item => {
+            if (!categoryStats[item.category]) {
+                categoryStats[item.category] = 0;
+            }
+            categoryStats[item.category] += item.amount;
+        });
+        
+        const centerX = 100;
+        const centerY = 100;
+        const radius = 80;
+        let currentAngle = -Math.PI / 2;
+        
+        // Draw pie slices
+        Object.entries(categoryStats).forEach(([category, amount]) => {
+            const sliceAngle = (amount / totalSpent) * 2 * Math.PI;
+            
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, radius, currentAngle, currentAngle + sliceAngle);
+            ctx.lineTo(centerX, centerY);
+            ctx.fillStyle = categoryColors[category] || '#dda0dd';
+            ctx.fill();
+            ctx.strokeStyle = '#1a1a2e';
+            ctx.lineWidth = 2;
+            ctx.stroke();
+            
+            currentAngle += sliceAngle;
+        });
+        
+        // Update legend
+        const legend = document.getElementById('chartLegend');
+        legend.innerHTML = Object.entries(categoryStats).map(([category, amount]) => 
+            `<div class="legend-item">
+                <div class="legend-color" style="background-color: ${categoryColors[category] || '#dda0dd'}"></div>
+                <span>${category} (${Math.round((amount / totalSpent) * 100)}%)</span>
+            </div>`
+        ).join('');
+    }
+    
+    // ===== EVENT LISTENERS =====
+    
+    // Close modal when clicking outside
+    window.onclick = function(event) {
+        const historyModal = document.getElementById('historyModal');
+        const topUpModal = document.getElementById('topUpModal');
+        const confirmModal = document.getElementById('confirmModal');
+        
+        if (event.target === historyModal) {
+            closeHistoryModal();
+        }
+        if (event.target === topUpModal) {
+            closeTopUpModal();
+        }
+        if (event.target === confirmModal) {
+            closeConfirmModal();
+        }
+    }
+    
+    // Enter key support
+    document.getElementById('spend-amount').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') recordSpending();
+    });
+    
+    // Clear errors when user starts typing
+    document.getElementById('spend-amount').addEventListener('input', function(e) {
+        if (e.target.value) {
+            clearErrors();
+        }
+    });
+    
+    document.getElementById('convert-amount').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') convertCurrency();
+    });
+
+    // Cleanup on page unload
+    window.addEventListener('beforeunload', () => {
+        if (unsubscribe) {
+            unsubscribe();
+        }
+    });
+</script>
+
+</body>
+</html>
